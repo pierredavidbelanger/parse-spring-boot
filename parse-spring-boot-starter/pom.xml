@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starters</artifactId>
+        <version>1.5.2.RELEASE</version>
+    </parent>
+
+    <groupId>ca.pjer</groupId>
+    <artifactId>parse-spring-boot-starter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Parse Spring Boot Starter</name>
+    <description>
+        Ths is a Spring Boot Starter for Parse integration
+    </description>
+    <url>https://github.com/pierredavidbelanger/parse-spring-boot</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Pierre-David Bélanger</name>
+            <email>pierredavidbelanger@gmail.com</email>
+            <organization>PjEr.ca</organization>
+            <organizationUrl>http://www.pjer.ca</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:pierredavidbelanger/parse-spring-boot.git</connection>
+        <developerConnection>scm:git:git@github.com:pierredavidbelanger/parse-spring-boot.git</developerConnection>
+        <url>https://github.com/pierredavidbelanger/parse-spring-boot</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.glassfish.hk2.external</groupId>
+                    <artifactId>aopalliance-repackaged</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ca.pjer</groupId>
+            <artifactId>parseclient</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+</project>

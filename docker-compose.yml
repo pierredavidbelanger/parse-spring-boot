@@ -1,0 +1,29 @@
+mongo:
+  image: mongo:3.0.8
+  command: "--smallfiles --logpath=/dev/null --setParameter failIndexKeyTooLong=false"
+  ports:
+    - 27017:27017
+parse-server:
+  image: yongjhih/parse-server:2.3.3
+  environment:
+    - APP_ID=MyAppId
+    - MASTER_KEY=MyMasterKey
+    - REST_API_KEY=MyRestApiKey
+    - ALLOW_CLIENT_CLASS_CREATION=1
+  ports:
+    - 1337:1337
+  links:
+    - mongo
+#parse-dashboard:
+#  image: yongjhih/parse-dashboard:1.0.22
+#  environment:
+#    - APP_ID=MyAppId
+#    - MASTER_KEY=MyMasterKey
+#    - SERVER_URL=http://localhost:1337/parse
+#    - PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=1
+#    - USER1=admin
+#    - USER1_PASSWORD=admin
+#  ports:
+#    - 4040:4040
+#  links:
+#    - parse-server
