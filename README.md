@@ -16,7 +16,7 @@ Just include this dependency into your Spring Boot application (see [example](pa
 </dependency>
 ```
 
-Then, define some properties (into you `application.properties` (see [example](parse-spring-boot-starter-example/application.properties)):
+Then, define some properties (into your `application.properties` (see [example](parse-spring-boot-starter-example/application.properties)):
 
 ```properties
 parse.serverUri=http://localhost:1337/parse # this is the default value
@@ -28,10 +28,10 @@ parse.masterKey=MyMasterKey
 Then, inject some beans (see [example](parse-spring-boot-starter-example/src/main/java/ca/pjer/spring/boot/parse/example/Main.java)):
 
 ```java
-@Autowired(required = false)
+@Autowired
 ca.pjer.parseclient.ParseClient parseClient;
 
-// Injected only if `parse.applicationId is defined`
+// Injected only if `parse.applicationId` is defined
 @Autowired(required = false)
 ca.pjer.parseclient.Application application;
 
@@ -39,7 +39,7 @@ ca.pjer.parseclient.Application application;
 @Qualifier("anonymousPerspective")
 ca.pjer.parseclient.Perspective anonymousPerspective;
 
-// Injected only if `parse.masterKey is defined`
+// Injected only if `parse.masterKey` is defined
 @Autowired(required = false)
 @Qualifier("masterPerspective")
 ca.pjer.parseclient.Perspective masterPerspective;
