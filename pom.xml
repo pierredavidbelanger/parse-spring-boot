@@ -10,8 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>Parse Spring Boot</name>
+
     <modules>
 		<module>parse-spring-boot-starter</module>
+        <module>parse-security-spring-boot-starter</module>
 		<module>parse-spring-boot-starter-example</module>
     </modules>
     
