@@ -1,48 +1,32 @@
 package ca.pjer.spring.boot.parse.example;
 
-
-import ca.pjer.parseclient.Application;
-import ca.pjer.parseclient.ParseClient;
-import ca.pjer.parseclient.ParseUser;
+import ca.pjer.parseclient.ParseSession;
 import ca.pjer.parseclient.Perspective;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.annotation.PostConstruct;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 public class Main {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    @RestController
+    public static class MainController {
 
-    @Autowired(required = false)
-    ParseClient parseClient;
+        @Autowired(required = false)
+        @Qualifier("masterPerspective")
+        Perspective masterPerspective;
 
-    @Autowired(required = false)
-    Application application;
+        @GetMapping("/index")
+        public Object index() {
+            return masterPerspective.withObjects("Whatever").query().find();
+        }
 
-    @Autowired(required = false)
-    @Qualifier("anonymousPerspective")
-    Perspective anonymousPerspective;
-
-    @Autowired(required = false)
-    @Qualifier("masterPerspective")
-    Perspective masterPerspective;
-
-    @PostConstruct
-    void test() {
-        logger.info("parseClient: {}", parseClient);
-        logger.info("application: {}", application);
-        logger.info("anonymousPerspective: {}", anonymousPerspective);
-        logger.info("masterPerspective: {}", masterPerspective);
-        if (masterPerspective != null) {
-            for (ParseUser parseUser : masterPerspective.withUsers().query().find()) {
-                logger.info("parseUser: {}", parseUser);
-            }
+        @GetMapping("/me")
+        public Object me(ParseSession parseSession) {
+            return parseSession;
         }
     }
 
